@@ -1,0 +1,25 @@
+---
+
+name: "List_DiskConsuming_Files_VDX"
+runner_type: "python-script"
+description: "Get disk space consuming Files from VDX"
+enabled: true
+entry_point: "get_large_files_VDX.py"
+
+parameters:
+        switch_IpAddress:
+                type: 'string'
+                description: 'IP address used to manage VDX switch remotely over telnet/ssh'
+                required: true
+                position: 0
+        login_username:
+                type: 'string'
+                description: 'Username used to login to the switch'
+                required: false
+                position: 1
+        login_password:
+                type: 'string'
+                description: 'Password for specified Username'
+                required: false
+                position: 2
+
