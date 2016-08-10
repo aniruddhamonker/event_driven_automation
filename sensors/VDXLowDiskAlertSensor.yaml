@@ -5,10 +5,10 @@
     description: 'Sensor to detect Low Disk Syslog messages on Brocade VDX switch'
     trigger_types:
         -
-	    name: 'TriggerLowDiskAlert'
-	    description: 'Low Disk Syslog Trigger'
-	    payload_scheme:
-	        type: 'object'
-		properties:
-		    ClientAddress:
-		        type: 'string' 
+            name: 'TriggerLowDiskAlert'
+            description: 'Low Disk Syslog Trigger'
+            payload_scheme:
+                type: 'object'
+                properties:
+                    ClientAddress:
+                        type: 'string' 
