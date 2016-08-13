@@ -8,8 +8,8 @@ RCV_BUFFER = 65535
 TIME_DELAY = 1
 
 class SSHConnectToVDX(Action):
-    def __init__(self,VDX_IpAddr,username='admin',password='password',config=None,action_service=None):
-        super(SSHConnectToVDX,self).__init__(config=config,action_service=action_service)
+    def __init__(self,VDX_IpAddr,username='admin',password='password',config=None):
+        super(SSHConnectToVDX,self).__init__(config=config)
 
         self.username = username
 	self.password = password
