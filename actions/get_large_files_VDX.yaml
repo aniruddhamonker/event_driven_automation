@@ -7,17 +7,17 @@ enabled: true
 entry_point: "get_large_files_VDX.py"
 
 parameters:
-        switch_IpAddress:
+        VDX_IpAddr:
                 type: 'string'
                 description: 'IP address used to manage VDX switch remotely over telnet/ssh'
                 required: true
                 position: 0
-        login_username:
+        username:
                 type: 'string'
                 description: 'Username used to login to the switch'
                 required: false
                 position: 1
-        login_password:
+        password:
                 type: 'string'
                 description: 'Password for specified Username'
                 required: false
