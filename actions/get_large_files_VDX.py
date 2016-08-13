@@ -34,7 +34,7 @@ class SSHConnectToVDX(Action):
 #Read Initial Screen Output buffer and Discard
 	CLIConnectionObj.recv(RCV_BUFFER)
 #Disable cli output paging on the VDX
-        _disable_Paging(CLIConnectionObj)
+        _disable_paging(CLIConnectionObj)
 #Get names of the top 5 disk space consuming files from VDX
         LargeFileNames = _find_large_files(CLIConnectionObj)
         print LargeFileNames
@@ -45,7 +45,7 @@ class SSHConnectToVDX(Action):
         except SSHConnectionCloseError as Err:
             print "Error Closing SSH Connection:",type(Err),Err
 
-    def _disable_Paging(self,CLIConnectionObj):
+    def _disable_paging(self,CLIConnectionObj):
         '''
         Set the CLI Page length to 0 to disable Paging
         '''
