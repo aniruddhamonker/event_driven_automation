@@ -30,7 +30,7 @@ if __name__ == '__main__':
 	            try:
 		        if 'FW-1402' in FilterData.group('MSG_ID'):
         	            print ("Low Disk Space reported on Switch with IP address %s\n")%(self.ClientAddress)
-                	    TriggerLowDiskAlert()
+                	    self.TriggerLowDiskAlert()
 		    except Exception as e:
                         pass
 
