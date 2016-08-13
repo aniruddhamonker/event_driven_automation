@@ -8,14 +8,13 @@ RCV_BUFFER = 65535
 TIME_DELAY = 1
 
 class SSHConnectToVDX(Action):
-    def __init__(self,VDX_IpAddr,username='admin',password='password',config=None):
+    def __init__(self,config=None):
         super(SSHConnectToVDX,self).__init__(config=config)
 
-        self.username = username
-	self.password = password
-	self.ip_addr = VDX_IpAddr
-
-    def run(self):
+    def run(self,VDX_IpAddr,username='admin',password='password'):
+	self.username = username
+        self.password = password
+        self.ip_addr = VDX_IpAddr
 #Paramiko SSH Client Object
         VdxConnectionObj = paramiko.SSHClient()
 #Ignore SSH Host key
@@ -34,9 +33,9 @@ class SSHConnectToVDX(Action):
 #Read Initial Screen Output buffer and Discard
 	CLIConnectionObj.recv(RCV_BUFFER)
 #Disable cli output paging on the VDX
-        _disable_paging(CLIConnectionObj)
+        self._disable_paging(CLIConnectionObj)
 #Get names of the top 5 disk space consuming files from VDX
-        LargeFileNames = _find_large_files(CLIConnectionObj)
+        LargeFileNames = self._find_large_files(CLIConnectionObj)
         print LargeFileNames
 #Close SSH Connection Object
         try:
@@ -81,6 +80,4 @@ class SSHConnectToVDX(Action):
         time.sleep(TIME_DELAY+5)
         output = CLIConnectionObj.recv(RCV_BUFFER)
         return output
-
-
         
