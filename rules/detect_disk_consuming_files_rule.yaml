@@ -9,4 +9,6 @@ trigger:
 action:
     ref: "NOS.List_DiskConsuming_Files_VDX"
     parameters:
-        ClientAddress: "{{trigger.ClientAddress}}"
+        VDX_IpAddr: "{{trigger.ClientAddress}}"
+        username: 'admin'
+        password: 'password'
