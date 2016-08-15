@@ -7,10 +7,9 @@ import pprint
 from st2reactor.sensor.base import Sensor
 
 class SyslogSensor(Sensor):
-
     def __init__(self,sensor_service,config=None):
-        super(SyslogSensor, self).__init__(sensor_service=sensor_service,config=config)
-        self._trigger_ref = 'NOS.LowDiskAlert'
+        super(SyslogSensor,self).__init__(sensor_service=sensor_service,config=config)
+        self._trigger_ref = "NOS.TriggerLowDiskAlert"
 
     def setup(self):
         self.ServerSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -26,24 +25,28 @@ class SyslogSensor(Sensor):
             FilterData = re.search('<\d+>(?P<DATE>\w+\s+\d{1,2} [\d\+:]+).*(?P<MSG_ID>\[msgid@.*?\]).*(?P<DEVICE>\[attr@.*?\]).*(?P<SEVERITY>\[severity@.*?\]).*\[swname@.*value=(?P<HOSTNAME>\".+?\")\].*BOM\s?(?P<SYSLOG>.*)',str(data))
 
             try:
-                if 'FW-1402' in FilterData.group('MSG_ID'):
-                    print ("Low Disk Space reported on Switch with IP address %s\n")%(self.ClientAddress)
+                print FilterData.group('SYSLOG'),'\n',FilterData.group('MSG_ID')
+                if "NSM-1003" in FilterData.group('MSG_ID'):
+                    print ("Low Disk Space reported on Switch with IP address %s\n")%(self.ClientAddress[0])
                     self.TriggerLowDiskAlert()
             except Exception as e:
-                    pass
+                pass
 
             time.sleep(0.5)
 
     def TriggerLowDiskAlert(self):
         trigger = self._trigger_ref
         payload = {
-                      'ClientAddress' : self.ClientAddress
+                      'ClientAddress' : self.ClientAddress[0]
                   }
 
         try:
-            self.sensor_service.dispatch(trigger=trigger,payload=payload)
+            self._sensor_service.dispatch(trigger=trigger,payload=payload)
+	    print "sending trigger \"NOS.TriggerLowDiskAlert\" to the system\n"
         except Exception as e:
             print "Failed to dispatch Trigger:",type(e),e
+
+        return
 
     def cleanup(self):
         self.ServerSocket.close()
@@ -58,5 +61,4 @@ class SyslogSensor(Sensor):
     def remove_trigger(self, trigger):
 # This method is called when trigger is deleted
         pass
-
 
