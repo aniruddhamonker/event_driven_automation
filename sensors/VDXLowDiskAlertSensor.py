@@ -8,8 +8,8 @@ from st2reactor.sensor.base import Sensor
 
 class SyslogSensor(Sensor):
 
-    def __init__(self):
-        super(SyslogSensor, self).__init__(sensor_service=sensor_service)
+    def __init__(self,sensor_service,config=None):
+        super(SyslogSensor, self).__init__(sensor_service=sensor_service,config=config)
         self._trigger_ref = 'NOS.LowDiskAlert'
 
     def setup(self):
