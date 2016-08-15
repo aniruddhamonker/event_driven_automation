@@ -26,7 +26,7 @@ class SyslogSensor(Sensor):
 
             try:
                 print FilterData.group('SYSLOG'),'\n',FilterData.group('MSG_ID')
-                if "NSM-1003" in FilterData.group('MSG_ID'):
+                if "FW-1402" in FilterData.group('MSG_ID'):
                     print ("Low Disk Space reported on Switch with IP address %s\n")%(self.ClientAddress[0])
                     self.TriggerLowDiskAlert()
             except Exception as e:
