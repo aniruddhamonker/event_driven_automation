@@ -9,7 +9,7 @@ from st2reactor.sensor.base import Sensor
 class SyslogSensor(Sensor):
     def __init__(self,sensor_service,config=None):
         super(SyslogSensor,self).__init__(sensor_service=sensor_service,config=config)
-        self._trigger_ref = "NOS.TriggerLowDiskAlert"
+        self._trigger_ref = "tshoot_brocadeVDX.TriggerLowDiskAlert"
 
     def setup(self):
         self.ServerSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
@@ -42,7 +42,7 @@ class SyslogSensor(Sensor):
 
         try:
             self._sensor_service.dispatch(trigger=trigger,payload=payload)
-	    print "sending trigger \"NOS.TriggerLowDiskAlert\" to the system\n"
+	    print "sending trigger \"tshoot_brocadeVDX.TriggerLowDiskAlert\" to the system\n"
         except Exception as e:
             print "Failed to dispatch Trigger:",type(e),e
 
