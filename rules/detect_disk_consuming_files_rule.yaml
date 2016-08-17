@@ -1,13 +1,13 @@
 ---
 name: "VDX_detect_large_files"
-pack: "NOS"
+pack: "tshoot_brocadeVDX"
 description: "rule to detect low disk space syslog message and retrive list of files consuming disk space on VDX"
 enabled: true
 trigger:
-    type: "NOS.TriggerLowDiskAlert"
+    type: "tshoot_brocadeVDX.TriggerLowDiskAlert"
 
 action:
-    ref: "NOS.List_DiskConsuming_Files_VDX"
+    ref: "tshoot_brocadeVDX.List_DiskConsuming_Files_VDX"
     parameters:
         VDX_IpAddr: "{{trigger.ClientAddress}}"
         username: 'admin'
