@@ -1,0 +1,11 @@
+---
+name: "tshoot_brocadeVDX"
+description: "Pack containing actions and sensors to troubleshoot Brocade VDX switches"
+keywords:
+    - 'brocade'
+    - 'nos'
+    - 'vdx'
+    - 'troubleshoot'
+version: 0.1
+author: 'aamonker'
+email: 'aamonker@brocade.com'
