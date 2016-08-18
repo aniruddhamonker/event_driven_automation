@@ -1,0 +1,14 @@
+
+---
+    class_name: 'SyslogSensor'
+    entry_point: 'trigger_low_disk_alert.py'
+    description: 'Sensor to detect Low Disk Syslog messages on Brocade VDX switch'
+    trigger_types:
+        -
+            name: 'trigger_low_disk_alert'
+            description: 'Low Disk Syslog Trigger'
+            payload_scheme:
+                type: 'object'
+                properties:
+                    ClientAddress:
+                        type: 'string' 
