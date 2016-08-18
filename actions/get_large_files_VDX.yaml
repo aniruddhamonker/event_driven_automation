@@ -1,6 +1,6 @@
 ---
 
-name: "List_DiskConsuming_Files_VDX"
+name: "get_large_files_VDX"
 runner_type: "python-script"
 description: "Get disk space consuming Files from VDX"
 enabled: true
