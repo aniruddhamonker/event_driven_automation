@@ -77,7 +77,7 @@ class SSHConnectToVDX(Action):
 
         CLIConnectionObj.send('foscmd "find / -path /mnt -prune -o -printf \'%s%p\\n\' | sort -nr | head"\n')
         print "Finding Files consuming disk space...\n"
-        time.sleep(TIME_DELAY+5)
+        time.sleep(TIME_DELAY+10)
         output = CLIConnectionObj.recv(RCV_BUFFER)
         return output
         
