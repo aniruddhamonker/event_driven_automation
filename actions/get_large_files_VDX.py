@@ -3,6 +3,7 @@
 import paramiko
 import time
 from st2actions.runners.pythonrunner import Action
+import re
 
 RCV_BUFFER = 65535
 TIME_DELAY = 1
@@ -35,8 +36,8 @@ class SSHConnectToVDX(Action):
 #Disable cli output paging on the VDX
         self._disable_paging(CLIConnectionObj)
 #Get names of the top 5 disk space consuming files from VDX
-        LargeFileNames = self._find_large_files(CLIConnectionObj)
-        print LargeFileNames
+        raw_output = self._find_large_files(CLIConnectionObj)
+        self._filter_output(raw_output)
 #Close SSH Connection Object
         try:
             VdxConnectionObj.close()
@@ -78,6 +79,15 @@ class SSHConnectToVDX(Action):
         CLIConnectionObj.send('foscmd "find / -path /mnt -prune -o -printf \'%s%p\\n\' | sort -nr | head"\n')
         print "Finding Files consuming disk space...\n"
         time.sleep(TIME_DELAY+10)
-        output = CLIConnectionObj.recv(RCV_BUFFER)
+        output = (CLIConnectionObj.recv(RCV_BUFFER))
         return output
-        
+
+    def _filter_output(self,output):
+        for i in output.splitlines():
+            try:
+                reg = re.search('^(?P<SIZE>\d+)(?P<FNAME>.*)',i)
+                print ("Filename: %s, Size: %s") %(reg.group('FNAME'),reg.group('SIZE'))
+            except:
+                continue
+
+
