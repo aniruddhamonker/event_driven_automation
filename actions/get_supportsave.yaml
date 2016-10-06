@@ -1,0 +1,27 @@
+---
+name: get_supportsave
+runner_type: "python-script"
+description: Action to trigger Supportsave collection from VDX
+enabled: true
+entry_point: "get_supportsave.py"
+
+parameters:
+    ip_addr:
+        type: "string"
+        description: IP address used to manage VDX switch remotely over telnet/ssh
+        required: true
+        position: 0
+
+    username:
+        type: "string"
+        description: Username used to login to the switch
+        required: true
+        position: 1
+        default: "admin"
+
+    password:
+        type: "string"
+        description: Password for the user
+        required: true
+        position: 2
+        default: "password"
