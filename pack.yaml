@@ -1,5 +1,5 @@
 ---
-name: "tshoot_brocadeVDX"
+name: "event_driven_automation"
 description: "Pack containing actions and sensors to troubleshoot Brocade VDX switches"
 keywords:
     - 'brocade'
